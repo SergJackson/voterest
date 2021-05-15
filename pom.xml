@@ -10,7 +10,7 @@
         <relativePath/>
     </parent>
 
-    <groupId>ru.nomadin.java</groupId>
+    <groupId>ru.nomadin</groupId>
     <artifactId>voterest</artifactId>
     <version>1.0</version>
     <name>The Best Lunch</name>

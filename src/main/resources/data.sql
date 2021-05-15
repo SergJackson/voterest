@@ -1,9 +1,9 @@
-INSERT INTO users (name)
-VALUES ('Admin_1'),
-       ('Voter_2'),
-       ('Voter_3'),
-       ('Voter_4'),
-       ('Voter_5');
+INSERT INTO users (name, phone, password)
+VALUES ('Admin_1','9001000001','{noop}admin'),
+       ('Voter_2','9002002002','{noop}blank'),
+       ('Voter_3','9003003003','{noop}blank'),
+       ('Voter_4','9004004004','{noop}blank'),
+       ('Voter_5','9005005005','{noop}blank');
 
 INSERT INTO user_roles (role, user_id)
 VALUES ('VOTER', 2),
@@ -24,7 +24,7 @@ VALUES ('Панна-котта с клубникой', 131, '2021-05-01 06:10:00
        ('Карпаччо из кабачков с сыром тофу', 134, '2021-05-01 08:11:11', 3, 1),
        ('Поке Авокадо', 242, '2021-05-01 08:11:12', 3, 1);
 
-INSERT INTO votes (vote_date,restaurant_id,user_id)
+INSERT INTO votes (vote_date, restaurant_id, user_id)
 VALUES ('2021-05-01 10:12:00', 1, 2),
        ('2021-05-01 10:13:00', 1, 3),
        ('2021-05-01 10:14:00', 2, 4),
