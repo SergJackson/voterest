@@ -1,9 +1,9 @@
-INSERT INTO users (name, phone, password)
-VALUES ('Admin_1','9001000001','{noop}admin'),
-       ('Voter_2','9002002002','{noop}blank'),
-       ('Voter_3','9003003003','{noop}blank'),
-       ('Voter_4','9004004004','{noop}blank'),
-       ('Voter_5','9005005005','{noop}blank');
+INSERT INTO users (name, phone, password, date_ins)
+VALUES ('Admin_1','9001000001','{noop}admin', '2021-05-01 00:00:00'),
+       ('Voter_2','9002002002','{noop}blank', '2021-05-01 00:00:00'),
+       ('Voter_3','9003003003','{noop}blank', '2021-05-01 00:00:00'),
+       ('Voter_4','9004004004','{noop}blank', '2021-05-01 00:00:00'),
+       ('Voter_5','9005005005','{noop}blank', '2021-05-01 00:00:00');
 
 INSERT INTO user_roles (role, user_id)
 VALUES ('VOTER', 2),
