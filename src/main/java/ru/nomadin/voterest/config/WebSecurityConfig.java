@@ -13,8 +13,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import ru.nomadin.voterest.model.Role;
 import ru.nomadin.voterest.model.User;
 import ru.nomadin.voterest.repository.UserRepository;
@@ -22,13 +20,15 @@ import ru.nomadin.voterest.web.AuthUser;
 
 import java.util.Optional;
 
+import static ru.nomadin.voterest.util.UserUtil.PASSWORD_ENCODER;
+
 @Configuration
 @EnableWebSecurity
 @Slf4j
 @AllArgsConstructor
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    public static final PasswordEncoder PASSWORD_ENCODER = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+    //public static final PasswordEncoder PASSWORD_ENCODER = PasswordEncoderFactories.createDelegatingPasswordEncoder();
     private final UserRepository userRepository;
 
     @Bean

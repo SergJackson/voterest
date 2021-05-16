@@ -3,7 +3,7 @@ package ru.nomadin.voterest.model;
 import org.springframework.security.core.GrantedAuthority;
 
 public enum Role implements GrantedAuthority {
-    USER,
+    VOTER,
     ADMIN;
 
     @Override

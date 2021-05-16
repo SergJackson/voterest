@@ -33,6 +33,7 @@ public class Restaurant extends AbstractNamedEntity {
     @JsonBackReference
     private User user;
 
+
     public Restaurant(Restaurant u) {
         this(u.getId(), u.getName(), u.getDateIns());
     }

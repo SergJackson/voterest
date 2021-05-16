@@ -12,16 +12,16 @@ import java.util.Date;
 @Getter
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@ToString(callSuper = true, exclude = {"user","restaurant"})
-public class Vote extends AbstractBaseEntity{
+@ToString(callSuper = true, exclude = {"user"})
+public class Vote extends AbstractBaseEntity {
 
     @Column(name = "date_vote", nullable = false, columnDefinition = "timestamp default now()")
     @NotNull
     private Date dateVote;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "restaurant_id", nullable = false)
-    @JsonBackReference
+    //@JsonBackReference
     private Restaurant restaurant;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -30,14 +30,14 @@ public class Vote extends AbstractBaseEntity{
     private User user;
 
     public Vote(Vote u) {
-        this(u.getId(), u.getDateVote());
+        this(u.getId(), u.getDateVote(), u.getRestaurant().getId());
     }
 
-    public Vote(Integer id) {
-        this(id, new Date());
+    public Vote(Integer id, Integer restId) {
+        this(id, new Date(), restId);
     }
 
-    public Vote(Integer id, Date dateVote) {
+    public Vote(Integer id, Date dateVote, Integer restId) {
         super(id);
         this.dateVote = dateVote;
     }
