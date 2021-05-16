@@ -2,34 +2,24 @@ package ru.nomadin.voterest.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
-import ru.nomadin.voterest.util.validation.NoHtml;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
-@Table(name = "restaurants")
+@Table(name = "restaurants", uniqueConstraints = {@UniqueConstraint(columnNames = {"name"}, name = "restaurants_unique_name_idx")})
 @Getter
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @ToString(callSuper = true, exclude = {"user"})
 public class Restaurant extends AbstractNamedEntity {
 
-    @Column(name = "name", nullable = false)
-    @NotBlank
-    @Size(min = 2, max = 120)
-    @NoHtml
-    private String name;
-
     @Column(name = "date_ins", nullable = false, columnDefinition = "timestamp default now()")
     @NotNull
     private Date dateIns;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @NoHtml
     @JoinColumn(name = "user_id", nullable = false)
     @JsonBackReference
     private User user;
