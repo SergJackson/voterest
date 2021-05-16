@@ -9,7 +9,6 @@ import ru.nomadin.voterest.HasIdAndPhone;
 import ru.nomadin.voterest.util.validation.NoHtml;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -27,7 +26,6 @@ import java.util.Set;
 public class User extends AbstractNamedEntity implements HasIdAndPhone {
 
     @Column(name = "phone", nullable = false, unique = true)
-    @Email
     @NotBlank
     @Size(max = 100)
     @NoHtml   // https://stackoverflow.com/questions/17480809

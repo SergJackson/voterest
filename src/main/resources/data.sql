@@ -10,12 +10,12 @@ VALUES ('VOTER', 2),
        ('ADMIN', 1),
        ('VOTER', 1);
 
-INSERT INTO restaurants (title)
-VALUES ('Art-Caviar'),
-       ('Home Cafe Петергоф'),
-       ('Mr. Bo');
+INSERT INTO restaurants (name, user_id)
+VALUES ('Art-Caviar', 1),
+       ('Home Cafe Петергоф', 1),
+       ('Mr. Bo', 1);
 
-INSERT INTO menu_items (dish, price, menu_date, restaurant_id, user_id)
+INSERT INTO dishs (title, price, date_menu, restaurant_id, user_id)
 VALUES ('Панна-котта с клубникой', 131, '2021-05-01 06:10:00', 1, 1),
        ('Жареные креветки с чесноком и чили', 221, '2021-05-01 05:18:00', 1, 1),
        ('Картофельные драники с вешенками', 199, '2021-05-01 04:20:00', 1, 1),
@@ -24,7 +24,7 @@ VALUES ('Панна-котта с клубникой', 131, '2021-05-01 06:10:00
        ('Карпаччо из кабачков с сыром тофу', 134, '2021-05-01 08:11:11', 3, 1),
        ('Поке Авокадо', 242, '2021-05-01 08:11:12', 3, 1);
 
-INSERT INTO votes (vote_date, restaurant_id, user_id)
+INSERT INTO votes (date_vote, restaurant_id, user_id)
 VALUES ('2021-05-01 10:12:00', 1, 2),
        ('2021-05-01 10:13:00', 1, 3),
        ('2021-05-01 10:14:00', 2, 4),
