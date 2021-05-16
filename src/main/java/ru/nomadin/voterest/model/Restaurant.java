@@ -29,6 +29,7 @@ public class Restaurant extends AbstractNamedEntity {
     private Date dateIns;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @NoHtml
     @JoinColumn(name = "user_id", nullable = false)
     @JsonBackReference
     private User user;

@@ -21,7 +21,6 @@ public class Vote extends AbstractBaseEntity {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "restaurant_id", nullable = false)
-    //@JsonBackReference
     private Restaurant restaurant;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -29,15 +28,11 @@ public class Vote extends AbstractBaseEntity {
     @JsonBackReference
     private User user;
 
-    public Vote(Vote u) {
-        this(u.getId(), u.getDateVote(), u.getRestaurant().getId());
+    public Vote(Integer id) {
+        this(id, new Date());
     }
 
-    public Vote(Integer id, Integer restId) {
-        this(id, new Date(), restId);
-    }
-
-    public Vote(Integer id, Date dateVote, Integer restId) {
+    public Vote(Integer id, Date dateVote) {
         super(id);
         this.dateVote = dateVote;
     }

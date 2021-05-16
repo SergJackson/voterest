@@ -22,9 +22,8 @@ public interface VoteRepository extends BaseRepository<Vote> {
 
     @Query("SELECT v FROM Vote v " +
             " WHERE v.user.id = :userId " +
-            "   and v.restaurant.id = :restId " +
             "   and v.dateVote >= :startDate AND v.dateVote < :endDate")
-    Optional<Vote> findVote(int userId, int restId, Date startDate, Date endDate);
+    Optional<Vote> findVote(int userId, Date startDate, Date endDate);
 
     @Query("SELECT v FROM Vote v JOIN FETCH v.user WHERE v.id = :id and v.user.id = :userId")
     Optional<Vote> getWithUser(int id, int userId);
