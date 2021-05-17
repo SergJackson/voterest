@@ -16,6 +16,8 @@ public interface RestaurantRepository extends BaseRepository<Restaurant> {
     @Query("SELECT r FROM Restaurant r ORDER BY r.name")
     List<Restaurant> getAll();
 
+    Optional<Restaurant> getByName(String name);
+
     @Query("SELECT r FROM Restaurant r WHERE r.user.id = :userId ORDER BY r.name")
     List<Restaurant> getAll(int userId);
 

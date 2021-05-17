@@ -24,7 +24,6 @@ import java.util.stream.Collectors;
 @Slf4j
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     public static final String EXCEPTION_DUPLICATE_PHONE = "User with this phone already exists";
-    public static final String EXCEPTION_DUPLICATE_NAME = "This Name already exists";
 
     private final ErrorAttributes errorAttributes;
 

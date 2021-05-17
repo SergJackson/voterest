@@ -28,6 +28,10 @@ public class Vote extends AbstractBaseEntity {
     @JsonBackReference
     private User user;
 
+    public String getRestaurantName() {
+        return this.restaurant.getName();
+    }
+
     public Vote(Integer id) {
         this(id, new Date());
     }

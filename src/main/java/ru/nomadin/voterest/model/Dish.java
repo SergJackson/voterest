@@ -41,7 +41,6 @@ public class Dish extends AbstractBaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
-    @JsonBackReference
     private User user;
 
     public Dish(Integer id, String title, int price, Date dateMenu) {

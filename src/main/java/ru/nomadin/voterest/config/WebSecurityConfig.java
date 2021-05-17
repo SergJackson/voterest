@@ -53,6 +53,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/rest/admin/**").hasRole(Role.ADMIN.name())
                 .antMatchers("/rest/profile/register").anonymous()
                 .antMatchers("/rest/restaurants/**").anonymous()
+                .antMatchers("/rest/dishs/**").anonymous()
                 .antMatchers("/rest/**").authenticated()
                 .and().httpBasic()
                 .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)

@@ -14,11 +14,13 @@ import ru.nomadin.voterest.model.Vote;
 import ru.nomadin.voterest.repository.RestaurantRepository;
 import ru.nomadin.voterest.repository.UserRepository;
 import ru.nomadin.voterest.repository.VoteRepository;
+import ru.nomadin.voterest.util.Result;
 import ru.nomadin.voterest.web.AuthUser;
 
 import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import static ru.nomadin.voterest.util.DateTimeUtil.*;
@@ -46,6 +48,13 @@ public class VoteRestController {
     public List<Vote> getAll(@AuthenticationPrincipal AuthUser authUser) {
         log.info("getAll for user {}", authUser.id());
         return voteRepository.getAll(authUser.id());
+    }
+
+    @GetMapping("/result")
+    public Map<String, Long> AllVoteOfDay() {
+        log.info("get The Best of voting");
+        Result best = new Result(voteRepository.AllVoteOfDay(atStartOfDay(), atEndOfDay()));
+        return best.getTheBest();
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)

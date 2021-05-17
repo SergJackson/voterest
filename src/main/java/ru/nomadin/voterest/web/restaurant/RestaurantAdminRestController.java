@@ -26,7 +26,7 @@ import static ru.nomadin.voterest.util.validation.ValidationUtil.checkNew;
 @RequestMapping(value = RestaurantAdminRestController.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
 @Slf4j
 @AllArgsConstructor
-public class RestaurantAdminRestController {
+public class RestaurantAdminRestController extends AbstractRestaurantController{
     static final String REST_URL = "/rest/admin/restaurants";
 
     private final UserRepository userRepository;
@@ -50,6 +50,7 @@ public class RestaurantAdminRestController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void update(@AuthenticationPrincipal AuthUser authUser, @Valid @RequestBody Restaurant restaurant, @PathVariable int id) throws BindException {
         int userId = authUser.id();
+        //validateBeforeUpdate(restaurant, id);
         log.info("update {} restaurant by user {}", restaurant, userId);
         assureIdConsistent(restaurant, id);
         ValidationUtil.checkNotFoundWithId(restaurantRepository.get(id, authUser.id()), "Restaurant id=" + id + " doesn't belong to user id=" + userId);
