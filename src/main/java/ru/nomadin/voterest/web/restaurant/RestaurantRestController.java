@@ -2,6 +2,8 @@ package ru.nomadin.voterest.web.restaurant;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +19,7 @@ import java.util.List;
 @RequestMapping(value = RestaurantRestController.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
 @Slf4j
 @AllArgsConstructor
+@CacheConfig(cacheNames = "restaurants")
 public class RestaurantRestController {
     static final String REST_URL = "/rest/restaurants";
 
@@ -29,6 +32,7 @@ public class RestaurantRestController {
     }
 
     @GetMapping
+    @Cacheable
     public List<Restaurant> getAll() {
         log.info("getAll Restaurant");
         return restaurantRepository.getAll();

@@ -2,6 +2,9 @@ package ru.nomadin.voterest.web.restaurant;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -26,6 +29,7 @@ import static ru.nomadin.voterest.util.validation.ValidationUtil.checkNew;
 @RequestMapping(value = RestaurantAdminRestController.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
 @Slf4j
 @AllArgsConstructor
+@CacheConfig(cacheNames = "restaurants")
 public class RestaurantAdminRestController extends AbstractRestaurantController{
     static final String REST_URL = "/rest/admin/restaurants";
 
@@ -40,6 +44,7 @@ public class RestaurantAdminRestController extends AbstractRestaurantController{
     }
 
     @GetMapping
+    @Cacheable
     public List<Restaurant> getAll(@AuthenticationPrincipal AuthUser authUser) {
         int userId = authUser.id();
         log.info("getAll Restaurant by admin {}", userId);
@@ -48,6 +53,7 @@ public class RestaurantAdminRestController extends AbstractRestaurantController{
 
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
+    @CacheEvict(allEntries = true)
     public void update(@AuthenticationPrincipal AuthUser authUser, @Valid @RequestBody Restaurant restaurant, @PathVariable int id) throws BindException {
         int userId = authUser.id();
         //validateBeforeUpdate(restaurant, id);
@@ -59,6 +65,7 @@ public class RestaurantAdminRestController extends AbstractRestaurantController{
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    @CacheEvict(allEntries = true)
     public ResponseEntity<Restaurant> createWithLocation(@AuthenticationPrincipal AuthUser authUser, @Valid @RequestBody Restaurant restaurant) {
         int userId = authUser.id();
         log.info("create {} Restaurant by user {}", restaurant, userId);
